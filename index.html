@@ -3,260 +3,314 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Surveillance NOC Command Center - Turi Network</title>
-    
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-
+    <title>YanNetwork - High Speed Internet</title>
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #020617;
-        }
-        /* Custom Popup Tema Cyberpunk AI */
-        .leaflet-popup-content-wrapper {
-            background: rgba(15, 23, 42, 0.95) !important;
-            color: #f8fafc !important;
-            border: 1px solid #06b6d4 !important;
-            border-radius: 12px !important;
-            backdrop-filter: blur(8px);
-            box-shadow: 0 0 20px rgba(6, 182, 212, 0.3) !important;
-        }
-        .leaflet-popup-tip {
-            background: #0f172a !important;
-            border: 1px solid #06b6d4 !important;
-        }
-        
-        /* Label teks nama langsung di atas jarum (Permanent Tooltip) */
-        .custom-tooltip {
-            background: rgba(15, 23, 42, 0.85) !important;
-            border: 1px solid #06b6d4 !important;
-            color: #22d3ee !important;
-            font-weight: 600;
-            font-size: 11px !important;
-            border-radius: 4px !important;
-            padding: 2px 6px !important;
-            box-shadow: 0 0 10px rgba(6, 182, 212, 0.2);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        .leaflet-tooltip-top:before {
-            border-top-color: #06b6d4 !important;
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        /* Animasi Text Log AI Berjalan */
-        @keyframes scanline {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(100%); }
+        body {
+            background-color: #0b0f19;
+            color: #ffffff;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(168, 85, 247, 0.15) 0%, transparent 40%);
         }
-        .ai-scanner::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 2px;
-            background: #06b6d4;
-            box-shadow: 0 0 10px #06b6d4;
-            animation: scanline 3s linear infinite;
+
+        /* Navbar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: rgba(11, 15, 25, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
             top: 0;
-            left: 0;
-            z-index: 10;
-            pointer-events: none;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ffffff;
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Main Promo Card */
+        .promo-card {
+            background: rgba(17, 24, 39, 0.7);
+            border: 2px solid rgba(99, 102, 241, 0.2);
+            border-radius: 24px;
+            padding: 40px;
+            margin: 40px auto;
+            max-width: 800px;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+            text-align: left;
+        }
+
+        /* Badge Promo Gratis */
+        .badge-gratis {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            background: linear-gradient(135deg, #ec4899, #f43f5e);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 14px;
+            box-shadow: 0 0 20px rgba(244, 63, 94, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .price-zone h3 {
+            color: #94a3b8;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .price {
+            font-size: 64px;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1;
+            margin: 10px 0;
+        }
+
+        .price span {
+            font-size: 20px;
+            color: #94a3b8;
+            font-weight: 400;
+        }
+
+        .speed-info {
+            font-size: 24px;
+            font-weight: 700;
+            color: #3b82f6;
+            background: rgba(59, 130, 246, 0.1);
+            padding: 8px 16px;
+            border-radius: 8px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .promo-text {
+            border-left: 2px solid rgba(255, 255, 255, 0.1);
+            padding-left: 30px;
+        }
+
+        .promo-text h2 {
+            font-size: 36px;
+            color: #e2e8f0;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+
+        .promo-text p {
+            color: #94a3b8;
+            font-size: 16px;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 800px;
+            margin: 30px auto;
+        }
+
+        .feature-item {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 12px;
+            font-size: 15px;
+            color: #cbd5e1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        /* CTA Button */
+        .cta-btn {
+            display: block;
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            color: white;
+            text-decoration: none;
+            padding: 18px 40px;
+            font-size: 18px;
+            font-weight: 700;
+            border-radius: 50px;
+            max-width: 300px;
+            margin: 40px auto;
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(99, 102, 241, 0.6);
+        }
+
+        /* Trust Badges */
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 60px;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        /* Responsive Breakpoints */
+        @select (max-width: 768px) {
+            .promo-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding: 30px 20px;
+            }
+            .promo-text {
+                border-left: none;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                padding-left: 0;
+                padding-top: 20px;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+                padding: 0 20px;
+            }
+            .hero h1 {
+                font-size: 32px;
+            }
+            .trust-badges {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .nav-links {
+                display: none;
+            }
         }
     </style>
 </head>
-<body class="h-screen overflow-hidden text-slate-200 flex flex-col selection:bg-cyan-500/30">
+<body>
 
-    <header class="bg-slate-950/80 border-b border-cyan-500/20 px-6 py-4 flex items-center justify-between z-50 shadow-[0_4px_20px_rgba(6,182,212,0.05)] backdrop-blur-md">
-        <div class="flex items-center space-x-4">
-            <div class="relative flex h-3.5 w-3.5">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-cyan-500"></span>
-            </div>
-            <div>
-                <h1 class="text-md font-bold tracking-widest text-white">TURI NETWORK <span class="text-cyan-400 font-light font-mono">[AI CORE V.26]</span></h1>
-                <p class="text-[11px] text-slate-400 font-mono">NEURAL LIVE SURVEILLANCE ENGINE</p>
-            </div>
-        </div>
-        <div class="text-right font-mono text-xs hidden sm:block">
-            <div class="text-cyan-400 font-semibold tracking-wider" id="liveClock">CLOCK_SYNCING...</div>
-            <div class="text-[10px] text-slate-500 mt-0.5">MATRIX STATUS: <span class="text-emerald-400 font-bold">READY</span></div>
-        </div>
-    </header>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">YanNetwork</div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Paket</a></li>
+            <li><a href="#">Fitur</a></li>
+            <li><a href="#">Kontak</a></li>
+        </ul>
+    </nav>
 
-    <div class="flex-1 flex overflow-hidden relative">
-        
-        <aside class="w-85 bg-slate-950/90 border-r border-slate-800 p-4 flex flex-col space-y-5 overflow-y-auto z-40 backdrop-blur-sm">
+    <!-- Main Content -->
+    <div class="hero">
+        <h1>Unleash The Speed: <span>YanNetwork</span></h1>
+        <p style="color: #94a3b8; font-size: 18px;">Solusi internet anti lemot khusus buat para penjelajah digital.</p>
+
+        <!-- Container Promo Utama -->
+        <div class="promo-card">
+            <!-- Badge Pojok Atas -->
+            <div class="badge-gratis">🔥 FULL GRATIS 1 BULAN!</div>
             
-            <div class="bg-slate-900/60 p-3 rounded-xl border border-cyan-500/10 relative overflow-hidden ai-scanner h-44 flex flex-col">
-                <div class="flex justify-between items-center mb-2">
-                    <h2 class="text-[10px] font-bold text-cyan-400 uppercase tracking-widest font-mono">Neural Object Detection Log</h2>
-                    <span class="inline-flex items-center px-1.5 py-0.5 rounded-full text-[9px] font-medium bg-cyan-400/10 text-cyan-400 animate-pulse border border-cyan-400/20">AI ACTIVE</span>
-                </div>
-                <div id="aiLogs" class="text-[11px] font-mono text-slate-400 space-y-1.5 overflow-y-auto flex-1 pr-1">
-                    </div>
+            <!-- Sisi Kiri: Harga & Kecepatan -->
+            <div class="price-zone">
+                <h3>Paket Ultra Hemat</h3>
+                <div class="price">100K<span> / 30 Hari</span></div>
+                <div class="speed-info">🚀 Upto 100 Mbps</div>
             </div>
 
-            <div class="flex-1 flex flex-col min-h-0">
-                <h2 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2 font-mono">System Camera Feeds</h2>
-                <div class="space-y-2 overflow-y-auto pr-1 flex-1" id="cameraList">
-                    </div>
+            <!-- Sisi Kanan: Headline Banner Promo -->
+            <div class="promo-text">
+                <h2>First Month GRATIS!</h2>
+                <p>Langganan sekarang, langsung nikmatin internetan gratis tanpa bayar apa pun khusus di bulan pertama.</p>
             </div>
+        </div>
 
-            <div class="bg-slate-900/40 p-3 rounded-lg border border-slate-800 text-[11px] space-y-2 font-mono">
-                <div class="flex justify-between"><span>Neural Core Processing:</span><span class="text-cyan-400 font-bold" id="cpuLoad">32%</span></div>
-                <div class="w-full bg-slate-800 h-1 rounded-full overflow-hidden"><div class="bg-cyan-400 h-full transition-all duration-500" id="cpuBar" style="width: 32%"></div></div>
-            </div>
+        <!-- Spesifikasi Tambahan -->
+        <div class="features-grid">
+            <div class="feature-item">⚡ Unlimited Data (Tanpa FUP)</div>
+            <div class="feature-item">🛠️ Gratis Biaya Instalasi</div>
+            <div class="feature-item">🔌 Tanpa Kontrak Mengikat</div>
+        </div>
 
-        </aside>
+        <!-- Tombol Eksekusi -->
+        <a href="https://wa.me/6281357713822" target="_blank" class="cta-btn">Pesan Sekarang</a>
 
-        <main class="flex-1 h-full w-full relative bg-slate-900">
-            <div class="absolute inset-0 pointer-events-none z-30 flex items-center justify-center opacity-10">
-                <div class="w-64 h-64 border border-cyan-400 rounded-full flex items-center justify-center animate-spin [animation-duration:20s]">
-                    <div class="w-48 h-48 border border-dashed border-cyan-400 rounded-full"></div>
-                </div>
-                <div class="absolute w-6 h-0.5 bg-cyan-400"></div>
-                <div class="absolute h-6 w-0.5 bg-cyan-400"></div>
-            </div>
-
-            <div id="map" class="h-full w-full"></div>
-        </main>
-
+        <!-- Footer Kecil Informasi Layanan -->
+        <div class="trust-badges">
+            <span>🛡️ 24/7 Technical Support</span>
+            <span>🚀 99.9% Uptime Berskala Backbone</span>
+            <span>📍 Tersedia di Area Terpilih</span>
+        </div>
     </div>
 
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script>
-        // 1. Setup Base Map Layers (Satelit & Neon Dark Mode)
-        const neonDark = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-            attribution: '©CartoDB'
-        });
-
-        const googleSatellite = L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
-            attribution: '©Google Satellite'
-        });
-
-        // 2. Inisialisasi Peta (Default pake Satelit biar mantap)
-        const map = L.map('map', { 
-            zoomControl: false,
-            layers: [googleSatellite] // Peta satelit jadi default awal luar layar
-        }).setView([-7.6877, 110.3421], 15);
-        
-        L.control.zoom({ position: 'bottomright' }).addTo(map);
-
-        // 3. Controller Pilihan Peta (Satelit vs Dark Mode) - POJOK KANAN ATAS
-        const baseMaps = {
-            "🛰️ Peta Satelit": googleSatellite,
-            "🌌 Mode Cyberpunk": neonDark
-        };
-        L.control.layers(baseMaps, null, { position: 'topright' }).addTo(map);
-
-        // 4. Data Titik CCTV Lo
-        const dataCCTV = [
-            {
-                id: 1,
-                nama: "CCTV - Simpang Turi Pos 1",
-                wilayah: "Turi Kidul",
-                lat: -7.6895, 
-                lng: 110.3410,
-                ip: "192.168.10.21",
-                videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4" 
-            },
-            {
-                id: 2,
-                nama: "CCTV - Area Gudang Utama",
-                wilayah: "Kawasan Industri",
-                lat: -7.6850, 
-                lng: 110.3450,
-                ip: "192.168.10.22",
-                videoUrl: "https://www.w3schools.com/html/movie.mp4"
-            }
-        ];
-
-        const cameraListContainer = document.getElementById('cameraList');
-
-        // 5. Plotting Marker + Tooltip Nama Permanen di Atas Jarum
-        dataCCTV.forEach(function(cctv) {
-            const marker = L.marker([cctv.lat, cctv.lng]).addTo(map);
-            
-            // Pasang Teks Nama Permanen di atas Jarum (Tooltip)
-            marker.bindTooltip(`${cctv.nama} [${cctv.wilayah}]`, {
-                permanent: true,
-                direction: 'top',
-                className: 'custom-tooltip',
-                offset: [0, -10]
-            });
-            
-            // Desain Popup Live Video pas Jarum diklik
-            const popupContent = `
-                <div class="cctv-popup w-[280px] font-mono">
-                    <h3 class="text-xs font-bold text-cyan-400 uppercase tracking-wide mb-1">${cctv.nama}</h3>
-                    <p class="text-[9px] text-slate-400 mb-2">LOC: ${cctv.lat.toFixed(4)}, ${cctv.lng.toFixed(4)} | IP: ${cctv.ip}</p>
-                    <video class="w-full rounded-lg border border-slate-700 shadow-lg" controls autoplay muted loop playsinline>
-                        <source src="${cctv.videoUrl}" type="video/mp4">
-                    </video>
-                </div>
-            `;
-            marker.bindPopup(popupContent, { maxWidth: 350 });
-
-            // Render Item List di Sidebar Kiri
-            const listItem = document.createElement('div');
-            listItem.className = "bg-slate-900/80 p-3 rounded-xl border border-slate-800/80 hover:border-cyan-400/50 transition duration-300 cursor-pointer flex items-center justify-between group";
-            listItem.innerHTML = `
-                <div class="font-mono">
-                    <h4 class="text-xs font-semibold text-slate-300 group-hover:text-cyan-400 transition">${cctv.nama}</h4>
-                    <p class="text-[10px] text-slate-500 mt-0.5">NET_IP // ${cctv.ip}</p>
-                </div>
-                <div class="h-2 w-2 rounded-full bg-cyan-400 shadow-[0_0_8px_#06b6d4]"></div>
-            `;
-            
-            // Efek klik list -> auto fokus peta & buka video
-            listItem.addEventListener('click', function() {
-                map.setView([cctv.lat, cctv.lng], 17);
-                marker.openPopup();
-            });
-
-            cameraListContainer.appendChild(listItem);
-        });
-
-        // 6. GIMMICK SCRIPT AI: Bikin Teks Log Deteksi AI Berjalan Otomatis
-        const aiLogsContainer = document.getElementById('aiLogs');
-        const objects = ["Car", "Motorcycle", "Pedestrian", "Truck", "Bicycle"];
-        
-        function generateAiLog() {
-            const time = new Date().toLocaleTimeString('id-ID', { hour12: false });
-            const randomCam = dataCCTV[Math.floor(Math.random() * dataCCTV.length)].nama;
-            const randomObj = objects[Math.floor(Math.random() * objects.length)];
-            const randomCount = Math.floor(Math.random() * 4) + 1;
-            
-            const logText = document.createElement('p');
-            logText.className = "text-slate-400 leading-relaxed border-l border-cyan-500/30 pl-1.5 animate-fadeIn";
-            logText.innerHTML = `[${time}] <span class="text-cyan-400">ANALYTICS:</span> Detected ${randomCount} ${randomObj}(s) at <span class="text-white">${randomCam}</span>`;
-            
-            aiLogsContainer.insertBefore(logText, aiLogsContainer.firstChild);
-            
-            if (aiLogsContainer.children.length > 15) {
-                aiLogsContainer.removeChild(aiLogsContainer.lastChild);
-            }
-
-            // Iseng acak load CPU biar grafik naek turun ala AI beneran
-            const randomCpu = Math.floor(Math.random() * 25) + 15;
-            document.getElementById('cpuLoad').innerText = `${randomCpu}%`;
-            document.getElementById('cpuBar').style.width = `${randomCpu}%`;
-        }
-        setInterval(generateAiLog, 2500);
-
-        // 7. Live NOC Clock
-        function updateClock() {
-            const now = new Date();
-            document.getElementById('liveClock').innerText = `NOC_TIME: ${now.toLocaleTimeString('id-ID')} WIB`;
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
-
-    </script>
 </body>
 </html>

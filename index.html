@@ -3,314 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YanNetwork - High Speed Internet</title>
+    <title>Untuk Jenyta Indana</title>
     <style>
-        /* Reset & Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
         body {
-            background-color: #0b0f19;
-            color: #ffffff;
-            overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(168, 85, 247, 0.15) 0%, transparent 40%);
-        }
-
-        /* Navbar */
-        nav {
+            background-color: #fce4ec;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            padding: 20px 8%;
-            background: rgba(11, 15, 25, 0.8);
-            backdrop-filter: blur(10px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 800;
-            background: linear-gradient(135deg, #6366f1, #a855f7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: 1px;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            color: #94a3b8;
-            text-decoration: none;
-            font-size: 15px;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: #ffffff;
-        }
-
-        /* Hero Section */
-        .hero {
-            max-width: 1200px;
-            margin: 60px auto;
-            padding: 0 20px;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             text-align: center;
         }
-
-        .hero h1 {
-            font-size: 48px;
-            font-weight: 800;
-            letter-spacing: -1px;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-        }
-
-        .hero h1 span {
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Main Promo Card */
-        .promo-card {
-            background: rgba(17, 24, 39, 0.7);
-            border: 2px solid rgba(99, 102, 241, 0.2);
-            border-radius: 24px;
+        .container {
+            background: white;
             padding: 40px;
-            margin: 40px auto;
-            max-width: 800px;
-            position: relative;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            align-items: center;
-            text-align: left;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
-
-        /* Badge Promo Gratis */
-        .badge-gratis {
-            position: absolute;
-            top: -20px;
-            right: -20px;
-            background: linear-gradient(135deg, #ec4899, #f43f5e);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 14px;
-            box-shadow: 0 0 20px rgba(244, 63, 94, 0.4);
-            animation: pulse 2s infinite;
-        }
-
+        h1 { color: #d81b60; }
+        .heart { font-size: 60px; animation: pulse 1s infinite; }
         @keyframes pulse {
             0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            50% { transform: scale(1.2); }
             100% { transform: scale(1); }
         }
-
-        .price-zone h3 {
-            color: #94a3b8;
-            font-size: 16px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .price {
-            font-size: 64px;
-            font-weight: 800;
-            color: #ffffff;
-            line-height: 1;
-            margin: 10px 0;
-        }
-
-        .price span {
-            font-size: 20px;
-            color: #94a3b8;
-            font-weight: 400;
-        }
-
-        .speed-info {
-            font-size: 24px;
-            font-weight: 700;
-            color: #3b82f6;
-            background: rgba(59, 130, 246, 0.1);
-            padding: 8px 16px;
-            border-radius: 8px;
-            display: inline-block;
-            margin-top: 10px;
-        }
-
-        .promo-text {
-            border-left: 2px solid rgba(255, 255, 255, 0.1);
-            padding-left: 30px;
-        }
-
-        .promo-text h2 {
-            font-size: 36px;
-            color: #e2e8f0;
-            line-height: 1.2;
-            margin-bottom: 10px;
-        }
-
-        .promo-text p {
-            color: #94a3b8;
-            font-size: 16px;
-        }
-
-        /* Features Grid */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            max-width: 800px;
-            margin: 30px auto;
-        }
-
-        .feature-item {
-            background: rgba(30, 41, 59, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 20px;
-            border-radius: 12px;
-            font-size: 15px;
-            color: #cbd5e1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        /* CTA Button */
-        .cta-btn {
-            display: block;
-            background: linear-gradient(135deg, #6366f1, #a855f7);
+        .btn {
+            background-color: #d81b60;
             color: white;
-            text-decoration: none;
-            padding: 18px 40px;
-            font-size: 18px;
-            font-weight: 700;
-            border-radius: 50px;
-            max-width: 300px;
-            margin: 40px auto;
-            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .cta-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(99, 102, 241, 0.6);
-        }
-
-        /* Trust Badges */
-        .trust-badges {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 60px;
-            color: #64748b;
-            font-size: 14px;
-        }
-
-        /* Responsive Breakpoints */
-        @select (max-width: 768px) {
-            .promo-card {
-                grid-template-columns: 1fr;
-                text-align: center;
-                padding: 30px 20px;
-            }
-            .promo-text {
-                border-left: none;
-                border-top: 1px solid rgba(255, 255, 255, 0.1);
-                padding-left: 0;
-                padding-top: 20px;
-            }
-            .features-grid {
-                grid-template-columns: 1fr;
-                padding: 0 20px;
-            }
-            .hero h1 {
-                font-size: 32px;
-            }
-            .trust-badges {
-                flex-direction: column;
-                gap: 15px;
-            }
-            .nav-links {
-                display: none;
-            }
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-
-    <!-- Navigation -->
-    <nav>
-        <div class="logo">YanNetwork</div>
-        <ul class="nav-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Paket</a></li>
-            <li><a href="#">Fitur</a></li>
-            <li><a href="#">Kontak</a></li>
-        </ul>
-    </nav>
-
-    <!-- Main Content -->
-    <div class="hero">
-        <h1>Unleash The Speed: <span>YanNetwork</span></h1>
-        <p style="color: #94a3b8; font-size: 18px;">Solusi internet anti lemot khusus buat para penjelajah digital.</p>
-
-        <!-- Container Promo Utama -->
-        <div class="promo-card">
-            <!-- Badge Pojok Atas -->
-            <div class="badge-gratis">🔥 FULL GRATIS 1 BULAN!</div>
-            
-            <!-- Sisi Kiri: Harga & Kecepatan -->
-            <div class="price-zone">
-                <h3>Paket Ultra Hemat</h3>
-                <div class="price">100K<span> / 30 Hari</span></div>
-                <div class="speed-info">🚀 Upto 100 Mbps</div>
-            </div>
-
-            <!-- Sisi Kanan: Headline Banner Promo -->
-            <div class="promo-text">
-                <h2>First Month GRATIS!</h2>
-                <p>Langganan sekarang, langsung nikmatin internetan gratis tanpa bayar apa pun khusus di bulan pertama.</p>
-            </div>
-        </div>
-
-        <!-- Spesifikasi Tambahan -->
-        <div class="features-grid">
-            <div class="feature-item">⚡ Unlimited Data (Tanpa FUP)</div>
-            <div class="feature-item">🛠️ Gratis Biaya Instalasi</div>
-            <div class="feature-item">🔌 Tanpa Kontrak Mengikat</div>
-        </div>
-
-        <!-- Tombol Eksekusi -->
-        <a href="https://wa.me/6281357713822" target="_blank" class="cta-btn">Pesan Sekarang</a>
-
-        <!-- Footer Kecil Informasi Layanan -->
-        <div class="trust-badges">
-            <span>🛡️ 24/7 Technical Support</span>
-            <span>🚀 99.9% Uptime Berskala Backbone</span>
-            <span>📍 Tersedia di Area Terpilih</span>
-        </div>
+    <div class="container">
+        <div class="heart">❤️</div>
+        <h1>Maafin aku ya, Jenyta Indana</h1>
+        <p>Aku tahu aku salah, dan aku minta maaf banget bikin kamu ngambek.</p>
+        <p>Jangan marah terus ya, aku kangen banget sama senyum kamu.</p>
+        <button class="btn" onclick="alert('Terima kasih udah mau maafin aku! Love you!')">Klik di sini kalau udah maafin</button>
     </div>
-
 </body>
 </html>

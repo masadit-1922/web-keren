@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,48 +7,68 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(1.05); }
+        }
+        .animate-glow {
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+    </style>
 </head>
-<body class="bg-slate-900 text-slate-100 font-sans antialiased">
+<body class="bg-slate-900 text-slate-100 font-sans antialiased overflow-x-hidden">
 
     <!-- Header / Navbar -->
-    <header class="bg-slate-900/85 backdrop-blur-md sticky top-0 z-50 border-b border-slate-800">
+    <header class="bg-slate-900/85 backdrop-blur-md sticky top-0 z-50 border-b border-slate-800 transition-all duration-300">
         <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <i class="fa-solid fa-wheat-awn text-emerald-400 text-2xl"></i>
+            <div class="flex items-center space-x-2 group cursor-pointer">
+                <i class="fa-solid fa-wheat-awn text-emerald-400 text-2xl group-hover:rotate-12 transition transform duration-300"></i>
                 <span class="text-xl font-bold tracking-wider text-white">SRANA<span class="text-emerald-400">BERAS</span>.NET</span>
             </div>
             <nav class="hidden md:flex space-x-6 text-sm font-medium text-slate-300">
-                <a href="#beranda" class="hover:text-emerald-400 transition">Beranda</a>
-                <a href="#layanan" class="hover:text-emerald-400 transition">Layanan & Harga</a>
-                <a href="#tentang" class="hover:text-emerald-400 transition">Tentang Kami</a>
-                <a href="#kontak" class="hover:text-emerald-400 transition">Kontak</a>
+                <a href="#beranda" class="hover:text-emerald-400 transition duration-200">Beranda</a>
+                <a href="#layanan" class="hover:text-emerald-400 transition duration-200">Layanan & Harga</a>
+                <a href="#tentang" class="hover:text-emerald-400 transition duration-200">Tentang Kami</a>
+                <a href="#kontak" class="hover:text-emerald-400 transition duration-200">Kontak</a>
             </nav>
-            <a href="#kontak" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold px-4 py-2 rounded-lg text-sm transition shadow-lg shadow-emerald-500/20">
+            <a href="#kontak" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-4 py-2 rounded-lg text-sm transition-all duration-300 shadow-lg shadow-emerald-500/20 hover:scale-105 active:scale-95">
                 Hubungi Kami
             </a>
         </div>
     </header>
 
-    <!-- Hero Section dengan Background Sawah & Dark Overlay -->
-    <section id="beranda" class="relative py-28 md:py-36 px-4 text-center bg-cover bg-center border-b border-slate-800" style="background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1920&auto=format&fit=crop');">
-        <!-- Overlay Gelap Supaya Teks Terbaca Jelas -->
+    <!-- Hero Section dengan Background Sawah & Animasi Halus -->
+    <section id="beranda" class="relative py-28 md:py-36 px-4 text-center bg-cover bg-center border-b border-slate-800 overflow-hidden" style="background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1920&auto=format&fit=crop');">
+        <!-- Overlay Gelap -->
         <div class="absolute inset-0 bg-slate-950/75 backdrop-blur-[2px]"></div>
 
+        <!-- Glow Effect di Background -->
+        <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none animate-glow"></div>
+
         <div class="relative max-w-3xl mx-auto space-y-6 z-10">
-            <span class="bg-emerald-500/20 text-emerald-400 text-xs font-semibold px-4 py-1.5 rounded-full border border-emerald-500/30 uppercase tracking-widest">
+            <span class="inline-block bg-emerald-500/20 text-emerald-400 text-xs font-semibold px-4 py-1.5 rounded-full border border-emerald-500/30 uppercase tracking-widest animate-float">
                 🌿 Panen Berkah, Internet Tanpa Batas 🚀
             </span>
-            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-white">
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-white transition transform duration-500">
                 Srana Beras <span class="text-emerald-400">Telecommunication</span>
             </h1>
-            <p class="text-slate-300 text-lg leading-relaxed">
-                Pusat pasokan beras pulen kualitas jempolan langsung dari sumbernya, dipadu infrastruktur RT/RW Net super ngebut buat warga sekitar!
+            <p class="text-slate-300 text-lg leading-relaxed max-w-2xl mx-auto">
+                Pusat pasokan beras pulen kualitas jempolan langsung dari sumbernya, dipadu infrastruktur super ngebut buat warga sekitar!
             </p>
             <div class="flex justify-center space-x-4 pt-4">
-                <a href="#layanan" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold px-6 py-3 rounded-xl transition shadow-lg shadow-emerald-500/25">
+                <a href="#layanan" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-6 py-3 rounded-xl transition-all duration-300 shadow-lg shadow-emerald-500/25 hover:scale-105 active:scale-95">
                     Lihat Paket Layanan
                 </a>
-                <a href="#kontak" class="bg-slate-900/80 hover:bg-slate-800 text-slate-200 font-bold px-6 py-3 rounded-xl border border-slate-700 transition">
+                <a href="#kontak" class="bg-slate-900/80 hover:bg-slate-800 text-slate-200 font-bold px-6 py-3 rounded-xl border border-slate-700 transition-all duration-300 hover:scale-105 active:scale-95">
                     Pesan Sekarang
                 </a>
             </div>
@@ -64,8 +84,8 @@
 
         <div class="grid md:grid-cols-2 gap-8">
             <!-- Card 1: Beras -->
-            <div class="bg-slate-800/90 border border-slate-700 rounded-2xl p-8 space-y-6 hover:border-emerald-500/50 transition shadow-xl">
-                <div class="w-14 h-14 bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-400 text-2xl">
+            <div class="bg-slate-800/90 border border-slate-700 rounded-2xl p-8 space-y-6 hover:border-emerald-500/60 transition-all duration-300 shadow-xl hover:-translate-y-2 group">
+                <div class="w-14 h-14 bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-400 text-2xl group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-slate-950 transition-all duration-300">
                     <i class="fa-solid fa-wheat-awn"></i>
                 </div>
                 <h3 class="text-2xl font-bold">Divisi Beras Premium</h3>
@@ -73,24 +93,24 @@
                     Beras pulen wangi pilihan, bersih dari kotoran, bikin tenaga kerja atau mabar game nggak gampang ngedrop.
                 </p>
                 <ul class="space-y-2 text-sm text-slate-300">
-                    <li><i class="fa-solid fa-check text-emerald-400 mr-2"></i> Setra Ramos / Pandan Wangi Asli</li>
-                    <li><i class="fa-solid fa-check text-emerald-400 mr-2"></i> Tersedia kemasan 5kg & 10kg</li>
-                    <li><i class="fa-solid fa-check text-emerald-400 mr-2"></i> Kualitas butiran utuh</li>
+                    <li class="flex items-center"><i class="fa-solid fa-check text-emerald-400 mr-2"></i> Setra Ramos / Pandan Wangi Asli</li>
+                    <li class="flex items-center"><i class="fa-solid fa-check text-emerald-400 mr-2"></i> Tersedia kemasan 5kg & 10kg</li>
+                    <li class="flex items-center"><i class="fa-solid fa-check text-emerald-400 mr-2"></i> Kualitas butiran utuh</li>
                 </ul>
-                <a href="#kontak" class="block text-center bg-slate-700 hover:bg-emerald-500 hover:text-slate-950 font-semibold py-3 rounded-xl transition">
+                <a href="#kontak" class="block text-center bg-slate-700 hover:bg-emerald-500 hover:text-slate-950 font-semibold py-3 rounded-xl transition-all duration-300">
                     Pesan Beras
                 </a>
             </div>
 
             <!-- Card 2: Internet -->
-            <div class="bg-slate-800/90 border-2 border-emerald-500/80 rounded-2xl p-8 space-y-6 hover:border-emerald-400 transition shadow-2xl relative">
-                <span class="absolute -top-3 right-8 bg-emerald-500 text-slate-950 text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
+            <div class="bg-slate-800/90 border-2 border-emerald-500/80 rounded-2xl p-8 space-y-6 hover:border-emerald-400 transition-all duration-300 shadow-2xl relative hover:-translate-y-2 group">
+                <span class="absolute -top-3 right-8 bg-emerald-500 text-slate-950 text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider animate-pulse">
                     Terlaris 🔥
                 </span>
-                <div class="w-14 h-14 bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-400 text-2xl">
+                <div class="w-14 h-14 bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-400 text-2xl group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-slate-950 transition-all duration-300">
                     <i class="fa-solid fa-wifi"></i>
                 </div>
-                <h3 class="text-2xl font-bold">Paket RT/RW Net Warga</h3>
+                <h3 class="text-2xl font-bold">Paket Warga</h3>
                 <div class="flex items-baseline space-x-2">
                     <span class="text-4xl font-extrabold text-emerald-400">Rp 80.000</span>
                     <span class="text-slate-400 text-sm">/ bulan</span>
@@ -99,11 +119,11 @@
                     Internet rumahan stabil ditenagai konfigurasi MikroTik load-balancing kelas enterprise, ping rendah, anti-lag!
                 </p>
                 <ul class="space-y-2 text-sm text-slate-300">
-                    <li><i class="fa-solid fa-check text-emerald-400 mr-2"></i> Kecepatan <strong>Up to 10 Mbps</strong></li>
-                    <li><i class="fa-solid fa-check text-emerald-400 mr-2"></i> Unlimited tanpa FUP ribet</li>
-                    <li><i class="fa-solid fa-check text-emerald-400 mr-2"></i> Latensi stabil untuk sosmed & game</li>
+                    <li class="flex items-center"><i class="fa-solid fa-check text-emerald-400 mr-2"></i> Kecepatan <strong>Up to 10 Mbps</strong></li>
+                    <li class="flex items-center"><i class="fa-solid fa-check text-emerald-400 mr-2"></i> Unlimited tanpa FUP ribet</li>
+                    <li class="flex items-center"><i class="fa-solid fa-check text-emerald-400 mr-2"></i> Latensi stabil untuk sosmed & game</li>
                 </ul>
-                <a href="#kontak" class="block text-center bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold py-3 rounded-xl transition shadow-lg shadow-emerald-500/20">
+                <a href="#kontak" class="block text-center bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-3 rounded-xl transition-all duration-300 shadow-lg shadow-emerald-500/20">
                     Pasang Sekarang
                 </a>
             </div>
@@ -125,7 +145,7 @@
         <h2 class="text-3xl font-bold">Hubungi Kami Sekarang</h2>
         <p class="text-slate-400">Pesan beras atau konsultasi jalur pemasangan internet langsung via WhatsApp.</p>
         <div class="flex justify-center">
-            <a href="https://wa.me/6281234567890" target="_blank" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold px-8 py-4 rounded-xl text-lg flex items-center space-x-3 transition shadow-lg shadow-emerald-500/25">
+            <a href="https://wa.me/6281357713822" target="_blank" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-8 py-4 rounded-xl text-lg flex items-center space-x-3 transition-all duration-300 shadow-lg shadow-emerald-500/25 hover:scale-105 active:scale-95">
                 <i class="fa-brands fa-whatsapp text-2xl"></i>
                 <span>Chat via WhatsApp</span>
             </a>
@@ -134,7 +154,7 @@
 
     <!-- Footer -->
     <footer class="bg-slate-950 py-8 text-center text-xs text-slate-500 border-t border-slate-800">
-        <p>&copy; 2026 Srana Beras Telecommunication. All rights reserved. Built with GitHub Pages.</p>
+        <p>&copy; 2026 Srana Beras Telecommunication. All rights reserved. </p>
     </footer>
 
 </body>
